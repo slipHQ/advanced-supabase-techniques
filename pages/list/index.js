@@ -1,13 +1,26 @@
-import Head from "next/head";
+import { useState, useEffect } from "react";
+import { supabase } from "../../utils/supabaseClient";
+import Auth from "../../components/Auth";
+import ListEquipment from "../../components/ListEquipment";
 
-export default function Equipment() {
+export default function Home() {
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    setSession(supabase.auth.session());
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
+
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen py-2'>
-      <Head>
-        <title>List your equipment for sale</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
-      List your equipment for sale
+    <div className='container' style={{ padding: "50px 0 100px 0" }}>
+      {!session ? (
+        <Auth />
+      ) : (
+        <ListEquipment key={session.user.id} session={session} />
+      )}
     </div>
   );
 }

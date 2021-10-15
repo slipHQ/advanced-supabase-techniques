@@ -1,12 +1,7 @@
 import Head from "next/head";
 import { createClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
-
-// Create a single supabase client for interacting with your database
-const supabase = createClient(
-  "https://sslnlcrlytrzdeoqtjyi.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNDA2NzU2NSwiZXhwIjoxOTQ5NjQzNTY1fQ.YcoIuw02PpOLuattu8BZjtgiqt3Gdqd9zba0CJtGAfE"
-);
+import { supabase } from "../../utils/supabaseClient";
 
 export default function Equipment() {
   const [equipment, setEquipment] = useState([]);
@@ -23,37 +18,6 @@ export default function Equipment() {
   useEffect(() => {
     getEquipment();
   }, []);
-
-  const people = [
-    {
-      name: "Emma Dorsey",
-      role: "Senior Front-end Developer",
-      imageUrl:
-        "https://images.unsplash.com/photo-1505840717430-882ce147ef2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80",
-      bio: "Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.",
-      twitterUrl: "#",
-      linkedinUrl: "#",
-    },
-    {
-      name: "Emma Dorsey",
-      role: "Senior Front-end Developer",
-      imageUrl:
-        "https://images.unsplash.com/photo-1505840717430-882ce147ef2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80",
-      bio: "Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.",
-      twitterUrl: "#",
-      linkedinUrl: "#",
-    },
-    {
-      name: "Emma Dorsey",
-      role: "Senior Front-end Developer",
-      imageUrl:
-        "https://images.unsplash.com/photo-1505840717430-882ce147ef2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80",
-      bio: "Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.",
-      twitterUrl: "#",
-      linkedinUrl: "#",
-    },
-    // More people...
-  ];
 
   return (
     <div className='bg-white'>
